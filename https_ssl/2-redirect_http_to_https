@@ -38,14 +38,14 @@ frontend  pauline-frontend-http
         mode http
 	http-request redirect scheme https code 301 unless { ssl_fc }
 	http-request set-header X-Forwarded-Proto http
-        default_backend oreste-backend
+        default_backend pauline-backend
 
 frontend pauline-frontend-https
-	bind *:443 ssl crt /etc/haproxy/certs/www.abizeraoreste.tech.pem
+	bind *:443 ssl crt /etc/haproxy/certs/www.paulineishimwe.tech.pem
 	http-request set-header X-Forwarded-Proto https
-	default_backend oreste-backend
+	default_backend pauline-backend
 
 backend pauline-backend
         balance roundrobin
         server 6181-web-01 54.234.30.254:80 check
-        server 6181-web-02 54.234.124.48:80 check
+        server 6181-web-02 54.234.124.48:80 check	
